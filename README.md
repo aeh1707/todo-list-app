@@ -12,12 +12,6 @@
 - JavaScript
 - Webpack
 
-## Live Demo (if available)
-
-[Live Demo Link](https://aeh1707.github.io/todo-list-app/)
-
-
-
 ## Authors
 
 👤 **Author**
