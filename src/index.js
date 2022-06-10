@@ -22,7 +22,7 @@ const tasks = [
 
 const populateTasks = () => {
   tasksList.innerHTML = '';
-  for (let i = 0; i < tasks.length; i++) {
+  for (let i = 0; i < tasks.length; i+=1) {
     tasksList.innerHTML += `
       <li class="task-item">
         <div class="task-info">

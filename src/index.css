@@ -51,17 +51,17 @@ input {
   background-color: white;
 }
 
+ul li,
+input {
+  border-bottom: 1px solid #272a31;
+}
+
 input:hover {
   outline: none;
 }
 
 ul {
   padding: 0;
-}
-
-ul li,
-input {
-  border-bottom: 1px solid #272a31;
 }
 
 .task-item {
