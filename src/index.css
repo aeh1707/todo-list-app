@@ -60,8 +60,21 @@ input:hover {
   outline: none;
 }
 
+li input.task {
+	font-size: inherit;
+	color: inherit;
+}
+
 ul {
   padding: 0;
+}
+
+::placeholder {
+	color: inherit;
+}
+
+.strike::placeholder {
+	text-decoration: line-through #272a31 solid;
 }
 
 .task-item {
@@ -74,6 +87,10 @@ ul {
   gap: 20px;
   width: 66%;
   align-items: center;
+}
+
+.remove {
+  padding: 10px;
 }
 
 .dots {
