@@ -61,8 +61,8 @@ input:hover {
 }
 
 li input.task {
-	font-size: inherit;
-	color: inherit;
+  font-size: inherit;
+  color: inherit;
 }
 
 ul {
@@ -70,11 +70,11 @@ ul {
 }
 
 ::placeholder {
-	color: inherit;
+  color: inherit;
 }
 
 .strike::placeholder {
-	text-decoration: line-through #272a31 solid;
+  text-decoration: line-through #272a31 solid;
 }
 
 .task-item {

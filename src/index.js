@@ -1,17 +1,26 @@
-import {tasks, tasksList, addTaskField, removeTask, removeAll, addTask, taskObject} from './modules/CRUD.js'
+/* eslint-disable */
+import {
+  tasks, tasksList, addTaskField, removeTask, removeAll, addTask,
+} from './modules/CRUD.js';
 import './index.css';
 
+export class taskObject {
+  constructor(description, completed, index) {
+    this.description = description;
+    this.completed = completed;
+    this.index = index;
+  }
+}
 
 addTaskField.addEventListener('keypress', (e) => {
-	if (e.key === 'Enter') {
-		e.preventDefault();
-		addTask(addTaskField.value);
-		addTaskField.value = '';
-		localStorage.setItem('tasks', JSON.stringify(tasks));
-		populateTasks();
-	}
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    addTask(addTaskField.value);
+    addTaskField.value = '';
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    populateTasks();
+  }
 });
-
 
 const populateTasks = () => {
   tasksList.innerHTML = '';
@@ -29,62 +38,59 @@ const populateTasks = () => {
   		`;
   }
 
-	const inputs = document.querySelectorAll('.task');
-	const checks = document.querySelectorAll('[type="checkbox"]');
-	const deleteButton = document.querySelectorAll('.remove');
-	const clearAll = document.querySelector('.clearAll');
- 
-	for (let i = 0; i < tasks.length; i += 1) {
-		
-		checks[i].checked = tasks[i].completed;
-		if (checks[i].checked) {
-			inputs[i].classList.add('strike');
-		} else {
-			inputs[i].classList.remove('strike');
-		}
-		checks[i].addEventListener('click', () => {
-			if (checks[i].checked) {
-				tasks[i].completed = true;
-				inputs[i].classList.add('strike');
-				localStorage.setItem('tasks', JSON.stringify(tasks));
-			} else {
-				tasks[i].completed = false;
-				inputs[i].classList.remove('strike');
-				localStorage.setItem('tasks', JSON.stringify(tasks));
-			}
-		})
+  const inputs = document.querySelectorAll('.task');
+  const checks = document.querySelectorAll('[type="checkbox"]');
+  const deleteButton = document.querySelectorAll('.remove');
+  const clearAll = document.querySelector('.clearAll');
 
-		clearAll.addEventListener('click', () => {
-			removeAll();
-			populateTasks();
-		});
+  for (let i = 0; i < tasks.length; i += 1) {
+    checks[i].checked = tasks[i].completed;
+    if (checks[i].checked) {
+      inputs[i].classList.add('strike');
+    } else {
+      inputs[i].classList.remove('strike');
+    }
+    checks[i].addEventListener('click', () => {
+      if (checks[i].checked) {
+        tasks[i].completed = true;
+        inputs[i].classList.add('strike');
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+      } else {
+        tasks[i].completed = false;
+        inputs[i].classList.remove('strike');
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+      }
+    });
 
-		inputs[i].addEventListener('focusin', () => {
-			deleteButton[i].classList.remove('fa-ellipsis-v');
-			deleteButton[i].classList.add('fa-trash');
-			deleteButton[i].addEventListener('click', (e) => {
-				let indexToDelete = e.target.id[1];
-				console.log(indexToDelete);
-				removeTask(indexToDelete);
-				populateTasks();
-				localStorage.setItem('tasks', JSON.stringify(tasks));
-			});
-		});
-	
-		inputs[i].addEventListener('input', (e) => {
-			e.target.setAttribute('placeholder', e.target.value);
-			tasks[i].description = e.target.value;
-			localStorage.setItem('tasks', JSON.stringify(tasks));
-		}
-		);
+    clearAll.addEventListener('click', () => {
+      removeAll();
+      populateTasks();
+    });
 
-		inputs[i].addEventListener('focusout', (e) => {
-			e.target.value = '';
-			deleteButton[i].classList.add('fa-ellipsis-v');
-			deleteButton[i].classList.remove('fa-trash');
-		}
-		);
-	}
+    inputs[i].addEventListener('focusin', () => {
+      deleteButton[i].classList.remove('fa-ellipsis-v');
+      deleteButton[i].classList.add('fa-trash');
+      deleteButton[i].addEventListener('click', (e) => {
+        const indexToDelete = e.target.id[1];
+        console.log(indexToDelete);
+        removeTask(indexToDelete);
+        populateTasks();
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+      });
+    });
+
+    inputs[i].addEventListener('input', (e) => {
+      e.target.setAttribute('placeholder', e.target.value);
+      tasks[i].description = e.target.value;
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    });
+
+    inputs[i].addEventListener('focusout', (e) => {
+      e.target.value = '';
+      deleteButton[i].classList.add('fa-ellipsis-v');
+      deleteButton[i].classList.remove('fa-trash');
+    });
+  }
 };
 
 populateTasks();
