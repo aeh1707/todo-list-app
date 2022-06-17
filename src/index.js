@@ -28,14 +28,14 @@ const populateTasks = async () => {
     }
     checks[i].addEventListener('click', () => {
       // updateStatus(i);
-			if (checks[i].checked) {
-				tasks[i].completed = true;
-				inputs[i].classList.add('strike');
-			} else {
-				tasks[i].completed = false;
-				inputs[i].classList.remove('strike');
-			}
-			localStorage.setItem('tasks', JSON.stringify(tasks));
+      if (checks[i].checked) {
+        tasks[i].completed = true;
+        inputs[i].classList.add('strike');
+      } else {
+        tasks[i].completed = false;
+        inputs[i].classList.remove('strike');
+      }
+      localStorage.setItem('tasks', JSON.stringify(tasks));
     });
 
     clearAll.addEventListener('click', () => {
@@ -49,7 +49,7 @@ const populateTasks = async () => {
       deleteButton[i].addEventListener('click', (e) => {
         const indexToDelete = e.target.id[1];
         removeTask(indexToDelete);
-				localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('tasks', JSON.stringify(tasks));
         populateTasks();
       });
     });

@@ -21,7 +21,7 @@ export const removeTask = (index) => {
 };
 
 export const removeAllCompleted = () => {
-  tasks = tasks.filter(task => task.completed === false)
+  tasks = tasks.filter((task) => task.completed === false);
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
