@@ -1,41 +1,17 @@
-/* eslint-disable */
 import {
   tasks, tasksList, addTaskField, removeTask, removeAll, addTask,
 } from './modules/CRUD.js';
 import './index.css';
 
-export class taskObject {
-  constructor(description, completed, index) {
-    this.description = description;
-    this.completed = completed;
-    this.index = index;
-  }
-}
-
-addTaskField.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    addTask(addTaskField.value);
-    addTaskField.value = '';
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    populateTasks();
-  }
-});
-
 const populateTasks = () => {
   tasksList.innerHTML = '';
   for (let i = 0; i < tasks.length; i += 1) {
-    tasksList.innerHTML += `
-			<li class="task-item task-item${tasks[i].index}">
-        <div class="task-info">
-					<input type="checkbox" name="">
-					<input class="task task${tasks[i].index}" type="text" placeholder="${tasks[i].description}">
-        </div>
+    tasksList.innerHTML += `<li class="task-item task-item${tasks[i].index}">
+        <div class="task-info"><input type="checkbox" name=""><input class="task task${tasks[i].index}" type="text" placeholder="${tasks[i].description}"></div>
         <div class="dots">
           <i class="fa fa-ellipsis-v remove" aria-hidden="true" id="i${tasks[i].index}"></i>
         </div>
-      </li>
-  		`;
+      </li>`;
   }
 
   const inputs = document.querySelectorAll('.task');
@@ -72,7 +48,6 @@ const populateTasks = () => {
       deleteButton[i].classList.add('fa-trash');
       deleteButton[i].addEventListener('click', (e) => {
         const indexToDelete = e.target.id[1];
-        console.log(indexToDelete);
         removeTask(indexToDelete);
         populateTasks();
         localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -92,5 +67,15 @@ const populateTasks = () => {
     });
   }
 };
+
+addTaskField.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    addTask(addTaskField.value);
+    addTaskField.value = '';
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    populateTasks();
+  }
+});
 
 populateTasks();
