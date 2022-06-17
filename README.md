@@ -4,6 +4,22 @@
 
 > A todo list app to orgaize your tasks.
 
+## Getting Started
+
+**Clone the repo into your local machine.**
+
+
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+NPM should be installed
+
+### Install
+run `npm install` in the project folder.
+
+### Usage
+run `npm run start`.
+
 
 ## Built With
 
@@ -12,7 +28,7 @@
 - JavaScript
 - Webpack
 
-## Authors
+## Author
 
 👤 **Author**
 
