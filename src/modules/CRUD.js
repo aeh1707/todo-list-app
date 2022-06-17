@@ -20,8 +20,8 @@ export const removeTask = (index) => {
   }
 };
 
-export const removeAll = () => {
-  tasks = [];
+export const removeAllCompleted = () => {
+  tasks = tasks.filter(task => task.completed === false)
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 

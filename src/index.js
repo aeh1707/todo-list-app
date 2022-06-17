@@ -1,9 +1,9 @@
 import {
-  tasks, tasksList, addTaskField, removeTask, removeAll, addTask,
+  tasks, tasksList, addTaskField, removeTask, removeAllCompleted, addTask,
 } from './modules/CRUD.js';
 import './index.css';
 
-const populateTasks = () => {
+const populateTasks = async () => {
   tasksList.innerHTML = '';
   for (let i = 0; i < tasks.length; i += 1) {
     tasksList.innerHTML += `<li class="task-item task-item${tasks[i].index}">
@@ -27,19 +27,19 @@ const populateTasks = () => {
       inputs[i].classList.remove('strike');
     }
     checks[i].addEventListener('click', () => {
-      if (checks[i].checked) {
-        tasks[i].completed = true;
-        inputs[i].classList.add('strike');
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-      } else {
-        tasks[i].completed = false;
-        inputs[i].classList.remove('strike');
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-      }
+      // updateStatus(i);
+			if (checks[i].checked) {
+				tasks[i].completed = true;
+				inputs[i].classList.add('strike');
+			} else {
+				tasks[i].completed = false;
+				inputs[i].classList.remove('strike');
+			}
+			localStorage.setItem('tasks', JSON.stringify(tasks));
     });
 
     clearAll.addEventListener('click', () => {
-      removeAll();
+      removeAllCompleted();
       populateTasks();
     });
 
@@ -49,8 +49,8 @@ const populateTasks = () => {
       deleteButton[i].addEventListener('click', (e) => {
         const indexToDelete = e.target.id[1];
         removeTask(indexToDelete);
+				localStorage.setItem('tasks', JSON.stringify(tasks));
         populateTasks();
-        localStorage.setItem('tasks', JSON.stringify(tasks));
       });
     });
 
