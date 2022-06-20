@@ -28,6 +28,10 @@ run `npm run start`.
 - JavaScript
 - Webpack
 
+## Live Demo
+
+[Live Demo Link](https://aeh1707.github.io/todo-list-application/)
+
 ## Author
 
 👤 **Author**
