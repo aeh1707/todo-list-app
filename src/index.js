@@ -1,7 +1,6 @@
-import {
-  addTask, removeTask, removeAllCompleted,
-} from './modules/CRUD.js';
 import './index.css';
+
+const { addTask, removeTask, removeAllCompleted } = require('./modules/CRUD.js');
 
 const tasksList = document.querySelector('ul');
 const addTaskField = document.querySelector('.new-task-field input');
