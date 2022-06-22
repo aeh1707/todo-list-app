@@ -16,7 +16,7 @@ const addTask = (taskDescription, tasksObject) => {
 };
 
 const removeTask = (indexToRemove, tasksObject) => {
-  if (indexToRemove <= 0) {
+  if (indexToRemove <= 0 || indexToRemove > tasksObject.length) {
     return tasksObject;
   }
   const zeroBasedIndex = indexToRemove - 1;

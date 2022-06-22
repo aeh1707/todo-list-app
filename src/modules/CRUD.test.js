@@ -34,4 +34,8 @@ describe('removeTask function testing', () => {
   test('description swimming index 1', () => {
     expect(removeTask(-1, [{ description: 'swimming', completed: false, index: 1 }])).toEqual([{ description: 'swimming', completed: false, index: 1 }]);
   });
+
+   test('[]', () => {
+    expect(removeTask(3, [{ description: 'swimming', completed: false, index: 1 }])).toEqual([{ description: 'swimming', completed: false, index: 1 }]);
+  });
 });
