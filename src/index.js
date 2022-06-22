@@ -1,9 +1,13 @@
 import {
-  tasks, tasksList, addTaskField, removeTask, removeAllCompleted, addTask,
+  addTask, removeTask, removeAllCompleted,
 } from './modules/CRUD.js';
 import './index.css';
 
-const populateTasks = async () => {
+const tasksList = document.querySelector('ul');
+const addTaskField = document.querySelector('.new-task-field input');
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+const populateTasks = () => {
   tasksList.innerHTML = '';
   for (let i = 0; i < tasks.length; i += 1) {
     tasksList.innerHTML += `<li class="task-item task-item${tasks[i].index}">
@@ -26,8 +30,7 @@ const populateTasks = async () => {
     } else {
       inputs[i].classList.remove('strike');
     }
-    checks[i].addEventListener('click', () => {
-      // updateStatus(i);
+    checks[i].addEventListener('click', () => { // eslint-disable-line
       if (checks[i].checked) {
         tasks[i].completed = true;
         inputs[i].classList.add('strike');
@@ -38,23 +41,24 @@ const populateTasks = async () => {
       localStorage.setItem('tasks', JSON.stringify(tasks));
     });
 
-    clearAll.addEventListener('click', () => {
-      removeAllCompleted();
+    clearAll.addEventListener('click', () => { // eslint-disable-line
+      tasks = removeAllCompleted(tasks);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
       populateTasks();
     });
 
-    inputs[i].addEventListener('focusin', () => {
+    inputs[i].addEventListener('focusin', () => { // eslint-disable-line
       deleteButton[i].classList.remove('fa-ellipsis-v');
       deleteButton[i].classList.add('fa-trash');
       deleteButton[i].addEventListener('click', (e) => {
         const indexToDelete = e.target.id[1];
-        removeTask(indexToDelete);
+        removeTask(indexToDelete, tasks);
         localStorage.setItem('tasks', JSON.stringify(tasks));
         populateTasks();
       });
     });
 
-    inputs[i].addEventListener('input', (e) => {
+    inputs[i].addEventListener('input', (e) => { // eslint-disable-line
       e.target.setAttribute('placeholder', e.target.value);
       tasks[i].description = e.target.value;
       localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -71,7 +75,7 @@ const populateTasks = async () => {
 addTaskField.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     e.preventDefault();
-    addTask(addTaskField.value);
+    addTask(addTaskField.value, tasks);
     addTaskField.value = '';
     localStorage.setItem('tasks', JSON.stringify(tasks));
     populateTasks();

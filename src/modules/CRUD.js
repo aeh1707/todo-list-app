@@ -1,7 +1,3 @@
-export const tasksList = document.querySelector('ul');
-export const addTaskField = document.querySelector('.new-task-field input');
-export let tasks = JSON.parse(localStorage.getItem('tasks')); // eslint-disable-line
-
 export class TaskObject {
   constructor(description, completed, index) {
     this.description = description;
@@ -10,22 +6,23 @@ export class TaskObject {
   }
 }
 
-export const removeTask = (index) => {
-  const zeroBasedIndex = index - 1;
+export const addTask = (taskDescription, tasksObject) => {
+  const newTask = new TaskObject(taskDescription, false, tasksObject.length + 1);
+  tasksObject.push(newTask);
+  return tasksObject;
+};
+
+export const removeTask = (indexToRemove, tasksObject) => {
+  const zeroBasedIndex = indexToRemove - 1;
   // remove task by index
-  tasks.splice(zeroBasedIndex, 1);
+  tasksObject.splice(zeroBasedIndex, 1);
   // update indexs
-  for (let i = zeroBasedIndex; i < tasks.length; i += 1) {
-    tasks[i].index -= 1;
+  for (let i = zeroBasedIndex; i < tasksObject.length; i += 1) {
+    tasksObject[i].index -= 1;
   }
 };
 
-export const removeAllCompleted = () => {
-  tasks = tasks.filter((task) => task.completed === false);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-};
-
-export const addTask = (taskDescription) => {
-  const newTask = new TaskObject(taskDescription, false, tasks.length + 1);
-  tasks.push(newTask);
+export const removeAllCompleted = (tasksObject) => {
+  tasksObject = tasksObject.filter((task) => task.completed === false);
+  return tasksObject;
 };
