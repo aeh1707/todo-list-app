@@ -41,7 +41,7 @@ describe('removeTask function testing', () => {
 });
 
 describe('removeAllCompleted function testing', () => {
-  test('description cooking index 1', () => {
+  test('test 1', () => {
     expect(removeAllCompleted([{ description: 'swimming', completed: true, index: 1 },
                                { description: 'cooking', completed: true, index: 2 },
                                { description: 'date', completed: false, index: 3 },
@@ -49,11 +49,11 @@ describe('removeAllCompleted function testing', () => {
     .toEqual([{ description: 'date', completed: false, index: 1 },
               { description: 'running', completed: false, index: 2 }]);
   });
-    test('description cooking index 1', () => {
-    expect(removeAllCompleted([{ description: 'swimming', completed: true, index: 1 },
-                               { description: 'cooking', completed: true, index: 2 },
-                               { description: 'date', completed: true, index: 3 },
-                               { description: 'running', completed: true, index: 4 }]))
-    .toEqual([]);
-  });
+  test('test 2', () => {
+  expect(removeAllCompleted([{ description: 'swimming', completed: true, index: 1 },
+                              { description: 'cooking', completed: true, index: 2 },
+                              { description: 'date', completed: true, index: 3 },
+                              { description: 'running', completed: true, index: 4 }]))
+  .toEqual([]);
+});
 });

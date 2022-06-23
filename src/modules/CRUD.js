@@ -31,6 +31,9 @@ const removeTask = (indexToRemove, tasksObject) => {
 
 const removeAllCompleted = (tasksObject) => {
   tasksObject = tasksObject.filter((task) => task.completed === false);
+  for (let i=0; i<tasksObject.length; i++) {
+    tasksObject[i].index = i + 1;
+  }
   return tasksObject;
 };
 
