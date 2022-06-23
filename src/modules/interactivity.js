@@ -6,7 +6,8 @@ const updateStatus = (check, task, input) => {
     task.completed = false;
     input.classList.remove('strike');
   }
-  return { task, input };
+  // return { task, input };
+  return input;
 }
 
 const editDescription = (element, task) => {

@@ -37,4 +37,4 @@ const removeAllCompleted = (tasksObject) => {
   return tasksObject;
 };
 
-module.exports = { addTask, removeTask, removeAllCompleted };
+module.exports = { addTask, removeTask, removeAllCompleted, TaskObject };
