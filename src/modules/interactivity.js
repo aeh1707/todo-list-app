@@ -8,12 +8,12 @@ const updateStatus = (check, task, input) => {
   }
   // return { task, input };
   return input;
-}
+};
 
 const editDescription = (element, task) => {
   element.setAttribute('placeholder', element.value);
   task.description = element.value;
   return task;
-}
+};
 
-module.exports = { updateStatus, editDescription }
+module.exports = { updateStatus, editDescription };

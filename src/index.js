@@ -18,8 +18,8 @@ const populateTasks = () => {
       </li>`;
   }
 
-  let inputs = document.querySelectorAll('.task');
-  let checks = document.querySelectorAll('[type="checkbox"]');
+  const inputs = document.querySelectorAll('.task');
+  const checks = document.querySelectorAll('[type="checkbox"]');
   const deleteButton = document.querySelectorAll('.remove');
   const clearAll = document.querySelector('.clearAll');
 

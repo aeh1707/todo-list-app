@@ -31,10 +31,12 @@ const removeTask = (indexToRemove, tasksObject) => {
 
 const removeAllCompleted = (tasksObject) => {
   tasksObject = tasksObject.filter((task) => task.completed === false);
-  for (let i=0; i<tasksObject.length; i++) {
+  for (let i = 0; i < tasksObject.length; i += 1) {
     tasksObject[i].index = i + 1;
   }
   return tasksObject;
 };
 
-module.exports = { addTask, removeTask, removeAllCompleted, TaskObject };
+module.exports = {
+  addTask, removeTask, removeAllCompleted, TaskObject,
+};
