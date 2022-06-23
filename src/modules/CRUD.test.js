@@ -1,4 +1,4 @@
-const { addTask, removeTask } = require('./CRUD.js');
+const { addTask, removeTask, removeAllCompleted } = require('./CRUD.js');
 
 describe('addTask function testing', () => {
   test('description swimming index 1', () => {
@@ -39,3 +39,4 @@ describe('removeTask function testing', () => {
     expect(removeTask(3, [{ description: 'swimming', completed: false, index: 1 }])).toEqual([{ description: 'swimming', completed: false, index: 1 }]);
   });
 });
+

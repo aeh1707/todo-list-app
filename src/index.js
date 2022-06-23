@@ -1,6 +1,7 @@
 import './index.css';
 
 const { addTask, removeTask, removeAllCompleted } = require('./modules/CRUD.js');
+const { updateStatus, editDescription } = require('./modules/interactivity.js');
 
 const tasksList = document.querySelector('ul');
 const addTaskField = document.querySelector('.new-task-field input');
@@ -17,8 +18,8 @@ const populateTasks = () => {
       </li>`;
   }
 
-  const inputs = document.querySelectorAll('.task');
-  const checks = document.querySelectorAll('[type="checkbox"]');
+  let inputs = document.querySelectorAll('.task');
+  let checks = document.querySelectorAll('[type="checkbox"]');
   const deleteButton = document.querySelectorAll('.remove');
   const clearAll = document.querySelector('.clearAll');
 
@@ -30,14 +31,9 @@ const populateTasks = () => {
       inputs[i].classList.remove('strike');
     }
     checks[i].addEventListener('click', () => { // eslint-disable-line
-      if (checks[i].checked) {
-        tasks[i].completed = true;
-        inputs[i].classList.add('strike');
-      } else {
-        tasks[i].completed = false;
-        inputs[i].classList.remove('strike');
-      }
+      updateStatus(checks[i], tasks[i], inputs[i]);
       localStorage.setItem('tasks', JSON.stringify(tasks));
+      populateTasks();
     });
 
     clearAll.addEventListener('click', () => { // eslint-disable-line
@@ -58,8 +54,7 @@ const populateTasks = () => {
     });
 
     inputs[i].addEventListener('input', (e) => { // eslint-disable-line
-      e.target.setAttribute('placeholder', e.target.value);
-      tasks[i].description = e.target.value;
+      editDescription(e.target, tasks[i]);
       localStorage.setItem('tasks', JSON.stringify(tasks));
     });
 
