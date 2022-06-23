@@ -40,3 +40,13 @@ describe('removeTask function testing', () => {
   });
 });
 
+describe('removeAllCompleted function testing', () => {
+  test('description cooking index 1', () => {
+    expect(removeAllCompleted([{ description: 'swimming', completed: true, index: 1 },
+                               { description: 'cooking', completed: true, index: 2 },
+                               { description: 'date', completed: false, index: 2 },
+                               { description: 'running', completed: false, index: 2 }]))
+    .toEqual([{ description: 'date', completed: false, index: 2 },
+              { description: 'running', completed: false, index: 2 }]);
+  });
+});
