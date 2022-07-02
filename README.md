@@ -2,7 +2,7 @@
 
 # TODO list App
 
-> A todo list app to orgaize your tasks.
+> A todo list app to orgaize your day to day tasks and stay focused, built using HTML, CSS, JS, Webpack, you can add, remove, edit the state of a task, clear all completed tasks, the design is very minimalistic.
 
 ## Getting Started
 
